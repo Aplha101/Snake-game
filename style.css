@@ -1,0 +1,83 @@
+html{
+  margin:0;
+  padding : 0;
+  height:100%;
+  width:100%;
+}
+.cont{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  height:100%;
+}
+.header{
+  font-family: 'Shizuru', cursive;
+  font-size : 40px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height:20%;
+  width:100%;
+  border-radius:5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  background:#acb8c9;
+}
+#area{
+  border-radius:5px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+body{
+  height:100%;
+  background-color: #d1d9e2;
+  margin:0;
+  padding:0;
+}
+/* Pretty Stuff? */
+
+.buttons{
+  display: flex;
+  flex-wrap: wrap-reverse;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.left , .right , .up , .down , .blank{
+  display:flex;
+  flex: 0 0 auto;
+  margin: 10px;
+  font-size:20px;
+  font-family: 'Shizuru', cursive;
+  justify-content: center;
+  align-items: center;
+  height:110px;
+  width:110px;
+  border:2px solid #d1d9e2;
+}
+.right{
+  box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+}
+.up{
+  display:block;
+  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+}
+.left{
+  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+}
+.down{
+  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+}
+
+/*.container {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  align-content: center
+}
+.item {
+  flex: 0 0 auto;
+  margin: 10px;
+}*/
