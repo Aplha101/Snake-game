@@ -57,3 +57,9 @@ body{
     width: 100px;
     height: 100px;
 }
+.btn{
+  height:100%;
+  outline:none;
+  width:100%;
+  background: transparent;
+}
