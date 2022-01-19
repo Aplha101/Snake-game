@@ -36,51 +36,24 @@ body{
 /* Pretty Stuff? */
 
 .buttons{
-  
-  display: flex;
-  
-  flex-direction: row-reverse;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-.left , .right , .up , .down , .blank{
-  margin: 10px;
-  font-size:20px;
-  font-family: 'Shizuru', cursive;
-  justify-content: center;
-  align-items: center;
-  height:110px;
-  width:110px;
-  border:2px solid #d1d9e2;
-}
-.right{
-  box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+    min-width: 378px;
 }
 .up{
-  display:block;
-  margin:auto;
-  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
+    
+    display: block;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
 }
-.left{
-  box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
-}
-.down{
-  box-shadow: rgba(240, 46, 170, 0.4) 0px 5px, rgba(240, 46, 170, 0.3) 0px 10px, rgba(240, 46, 170, 0.2) 0px 15px, rgba(240, 46, 170, 0.1) 0px 20px, rgba(240, 46, 170, 0.05) 0px 25px;
-}
-.right , .down , .left{
-  display:inline-block;
-}
+.buttons-bottom{
+    text-align: center;
 
-/*.container {
-  display: flex;
-  flex-wrap: wrap-reverse;
-  flex-direction: row-reverse;
-  justify-content: center;
-  align-items: center;
-  align-content: center
 }
-.item {
-  flex: 0 0 auto;
-  margin: 10px;
-}*/
+.left, .down, .right{
+    padding:10px;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+}
