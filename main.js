@@ -6,7 +6,7 @@ let L = document.getElementById('left')
 let R = document.getElementById('right')
 let scor = document.getElementById("sco")
 let sc = 10
-let score = 1
+let score = 0
 area.style = "background:#556479;"
 area.height = html.getBoundingClientRect().width / 2
 area.width = html.getBoundingClientRect().width / 2
@@ -43,28 +43,28 @@ class Snake {
   eat(pos) {
     let a = dist(this.x, this.y, pos.x, pos.y)
     if (a <= 10) {
-      this.track += 10
+      this.track++
       return true;
     } else {
       return false;
     }
   }
-  death(){
-    for(let i = 0; i < this.tail.length; i++){
-      if(this.x == this.tail[i].x && this.y == this.tail[i].y){
+  death() {
+    for (let i = 0; i < this.tail.length; i++) {
+      if (this.x == this.tail[i].x && this.y == this.tail[i].y) {
         alert(`GAME OVER , your score was : ${score}`)
         this.tail = []
         this.track = 0
         score = 0
-        this.x = area.width/2
-        this.y = area.height/2 
+        this.x = area.width / 2
+        this.y = area.height / 2
       }
     }
   }
 
   update() {
     for (let i = 0; i < this.tail.length - 1; i++) {
-      this.tail[i] = this.tail[i+1]
+      this.tail[i] = this.tail[i + 1]
     }
     this.tail[this.track - 1] = { x: this.x, y: this.y }
 
@@ -77,16 +77,23 @@ class Snake {
   }
   show() {
     ctx.fillStyle = "#fff"
-    for (let i = 0; i < this.tail.length; i++){
-      ctx.fillRect(this.tail[i].x, this.tail[i].y, 10 , 10)
+    for (let i = 0; i < this.tail.length; i++) {
+      ctx.fillRect(this.tail[i].x, this.tail[i].y, 10, 10)
     }
     ctx.beginPath()
     ctx.rect(snake.x, snake.y, 10, 10)
     ctx.fill();
   }
   limit() {
-    this.x = clamp(snake.x, 0, area.width - sc)
-    this.y = clamp(snake.y, 0, area.height - sc)
+    if(this.x > area.width){
+      this.x = 0
+    } else if(this.y > area.height){
+      this.y = 0
+    }else if(this.x < 1){
+      this.x = area.width
+    }else if(this.y < 1){
+      this.y = area.height
+    }
   }
 }
 
@@ -96,15 +103,14 @@ class Food {
     this.y = y
   }
   limit() {
-    food.x = clamp(food.x, 0, area.width - sc)
-    food.y = clamp(food.y, 0, area.height - sc)
+    food.x = clamp(this.x, 0, area.width - sc)
+    food.y = clamp(this.y, 0, area.height - sc)
   }
   show() {
     ctx.fillStyle = "red"
     ctx.beginPath()
     ctx.rect(this.x, this.y, 10, 10)
     ctx.fill();
-
   }
 }
 
@@ -149,11 +155,11 @@ setInterval(() => {
   snake.show()
   snake.limit()
   snake.death()
-  
+
   food.show()
   food.limit()
-  
-  
+
+
   if (snake.eat(food)) {
     score++
     loc(food)
