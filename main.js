@@ -4,9 +4,9 @@ let U = document.getElementById('up')
 let D = document.getElementById('down')
 let L = document.getElementById('left')
 let R = document.getElementById('right')
-let scor = document.getElementById("sco")
 let sc = 10
 let score = 0
+let hiscore = 0
 area.style = "background:#556479;"
 area.height = html.getBoundingClientRect().width / 2
 area.width = html.getBoundingClientRect().width / 2
@@ -22,7 +22,7 @@ function dist(x, y, posx, posy) {
 }
 
 function clamp(value, min, max) {
-  return Math.min(Math.max(value, min), max);
+  return Math.min(Math.max(value, min), max)
 }
 
 function loc(npos) {
@@ -38,8 +38,9 @@ class Snake {
     this.xsp = 1
     this.ysp = 0
     this.tail = []
-    this.track = 0
+    this.track = 1
   }
+  
   eat(pos) {
     let a = dist(this.x, this.y, pos.x, pos.y)
     if (a <= 10) {
@@ -49,19 +50,26 @@ class Snake {
       return false;
     }
   }
+  scoring(score){
+    if(score > hiscore){
+      hiscore = score
+      sessionStorage.setItem('hiscore' , hiscore)
+    }
+  }
   death() {
     for (let i = 0; i < this.tail.length; i++) {
       if (this.x == this.tail[i].x && this.y == this.tail[i].y) {
-        alert(`GAME OVER , your score was : ${score}`)
+        let hc = sessionStorage.getItem('hiscore')
+        alert(`GAME OVER , your score was : ${score} High score: ${hc}`)
         this.tail = []
         this.track = 0
         score = 0
         this.x = area.width / 2
         this.y = area.height / 2
+
       }
     }
   }
-
   update() {
     for (let i = 0; i < this.tail.length - 1; i++) {
       this.tail[i] = this.tail[i + 1]
@@ -85,15 +93,16 @@ class Snake {
     ctx.fill();
   }
   limit() {
-    if(this.x > area.width){
-      this.x = 0
-    } else if(this.y > area.height){
-      this.y = 0
-    }else if(this.x < 1){
-      this.x = area.width
-    }else if(this.y < 1){
-      this.y = area.height
+    if (this.x > area.width) {
+      this.x = 0;
+    } else if (this.y > area.height) {
+      this.y = 0;
+    } else if (this.x < 1) {
+      this.x = area.width;
+    } else if (this.y < 1) {
+      this.y = area.height;
     }
+
   }
 }
 
@@ -140,11 +149,6 @@ function controls() {
   R.addEventListener("click", () => {
     snake.dir(1, 0)
   })
-
-  window.addEventListener("keydown", (e) => {
-    console.log(evt)
-  })
-
 }
 
 setInterval(() => {
@@ -154,11 +158,11 @@ setInterval(() => {
   snake.update()
   snake.show()
   snake.limit()
+  snake.scoring(score)
   snake.death()
 
   food.show()
   food.limit()
-
 
   if (snake.eat(food)) {
     score++
@@ -166,9 +170,3 @@ setInterval(() => {
   }
 
 }, 17)
-
-//Canvas as a plane
-// ↑ -Y
-// ↓ +Y
-// → +X
-// ← -X
