@@ -10,6 +10,11 @@ let hiscore = 0
 area.style = "background:#556479;"
 area.height = html.getBoundingClientRect().width / 2
 area.width = html.getBoundingClientRect().width / 2
+
+if(window.innerHeight < window.innerWidth){
+  area.width = html.getBoundingClientRect().height / 2
+  area.height = html.getBoundingClientRect().height / 2
+}
 let ctx = area.getContext('2d')
 
 
