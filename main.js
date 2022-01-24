@@ -11,7 +11,7 @@ area.style = "background:#556479;"
 area.height = html.getBoundingClientRect().width / 2
 area.width = html.getBoundingClientRect().width / 2
 
-if(window.innerHeight < window.innerWidth){
+if (window.innerHeight < window.innerWidth) {
   area.width = html.getBoundingClientRect().height / 2
   area.height = html.getBoundingClientRect().height / 2
 }
@@ -43,9 +43,9 @@ class Snake {
     this.xsp = 1
     this.ysp = 0
     this.tail = []
-    this.track = 1
+    this.track = 0
   }
-  
+
   eat(pos) {
     let a = dist(this.x, this.y, pos.x, pos.y)
     if (a <= 10) {
@@ -55,10 +55,10 @@ class Snake {
       return false;
     }
   }
-  scoring(score){
-    if(score > hiscore){
+  scoring(score) {
+    if (score > hiscore) {
       hiscore = score
-      sessionStorage.setItem('hiscore' , hiscore)
+      sessionStorage.setItem('hiscore', hiscore)
     }
   }
   death() {
@@ -71,7 +71,7 @@ class Snake {
         score = 0
         this.x = area.width / 2
         this.y = area.height / 2
-
+        location.reload(true)
       }
     }
   }
@@ -154,7 +154,24 @@ function controls() {
   R.addEventListener("click", () => {
     snake.dir(1, 0)
   })
+  //keyboard controls 
+  window.addEventListener('keydown', (evt) => {
+    if (evt.keyCode == 38 || evt.keyCode == 87) {
+      snake.dir(0, -1)
+      evt.preventDefault()
+    } else if (evt.keyCode == 40 || evt.keyCode == 83) {
+      snake.dir(0, 1)
+      evt.preventDefault()
+    } else if (evt.keyCode == 37 || evt.keyCode == 65) {
+      snake.dir(-1, 0)
+      evt.preventDefault()
+    } else if (evt.keyCode == 39 || evt.keyCode == 68) {
+      snake.dir(1, 0)
+      evt.preventDefault()
+    }
+  })
 }
+
 
 setInterval(() => {
   Clear()
