@@ -64,6 +64,7 @@ class Snake {
   death() {
     for (let i = 0; i < this.tail.length; i++) {
       if (this.x == this.tail[i].x && this.y == this.tail[i].y) {
+        this.scoring()
         let hc = sessionStorage.getItem('hiscore')
         alert(`GAME OVER , your score was : ${score} High score: ${hc}`)
         this.tail = []
@@ -71,7 +72,6 @@ class Snake {
         score = 0
         this.x = area.width / 2
         this.y = area.height / 2
-        location.reload(true)
       }
     }
   }
