@@ -7,6 +7,7 @@ let R = document.getElementById('right')
 let sc = 10
 let score = 0
 let hiscore = 0
+let i = false //swipe needs fixing
 area.style = "background:#556479;"
 area.height = html.getBoundingClientRect().width / 2
 area.width = html.getBoundingClientRect().width / 2
@@ -176,7 +177,7 @@ area.addEventListener("touchmove", moveTouch, false);
 // Swipe Up / Down / Left / Right
 var initialX = null;
 var initialY = null;
-
+if(i){
 function startTouch(e) {
   initialX = e.touches[0].clientX;
   initialY = e.touches[0].clientY;
@@ -212,7 +213,7 @@ function moveTouch(e) {
   initialY = null;
   e.preventDefault()
 };
-
+}
 setInterval(() => {
   Clear()
   controls()
