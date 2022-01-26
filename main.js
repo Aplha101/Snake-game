@@ -62,7 +62,7 @@ class Snake {
     }
   }
   death() {
-  for (let i = 0; i < this.tail.length; i++) {
+    for (let i = 0; i < this.tail.length; i++) {
       if (this.x == this.tail[i].x && this.y == this.tail[i].y) {
         this.scoring()
         let hc = sessionStorage.getItem('hiscore')
@@ -172,7 +172,60 @@ function controls() {
     }
   })
 }
+area.addEventListener("touchstart", startTouch, false);
+area.addEventListener("touchmove", moveTouch, false);
 
+// Swipe Up / Down / Left / Right
+var initialX = null;
+var initialY = null;
+
+function startTouch(e) {
+  initialX = e.touches[0].clientX;
+  initialY = e.touches[0].clientY;
+};
+
+function moveTouch(e) {
+  if (initialX === null) {
+    return;
+  }
+
+  if (initialY === null) {
+    return;
+  }
+
+  var currentX = e.touches[0].clientX;
+  var currentY = e.touches[0].clientY;
+
+  var diffX = initialX - currentX;
+  var diffY = initialY - currentY;
+
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    // sliding horizontally
+    if (diffX > 0) {
+
+      snake.dir(-1, 0)
+
+    } else {
+
+      snake.dir(1, 0)
+
+    }
+  } else {
+    // sliding vertically
+    if (diffY > 0) {
+
+      snake.dir(0, -1)
+
+    } else {
+      snake.dir(0, 1)
+
+    }
+  }
+
+  initialX = null;
+  initialY = null;
+  e.preventDefault()
+};
 
 setInterval(() => {
   Clear()
