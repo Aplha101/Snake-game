@@ -45,7 +45,6 @@ class Snake {
     this.tail = []
     this.track = 0
   }
-
   eat(pos) {
     let a = dist(this.x, this.y, pos.x, pos.y)
     if (a <= 10) {
@@ -108,7 +107,6 @@ class Snake {
     } else if (this.y < 1) {
       this.y = area.height;
     }
-
   }
 }
 
@@ -183,12 +181,10 @@ function startTouch(e) {
   initialX = e.touches[0].clientX;
   initialY = e.touches[0].clientY;
 };
-
 function moveTouch(e) {
   if (initialX === null) {
     return;
   }
-
   if (initialY === null) {
     return;
   }
@@ -198,30 +194,20 @@ function moveTouch(e) {
 
   var diffX = initialX - currentX;
   var diffY = initialY - currentY;
-
-  if (Math.abs(diffX) > Math.abs(diffY)) {
-    // sliding horizontally
+  
+  if (Math.abs(diffX) > Math.abs(diffY) ) {
     if (diffX > 0) {
-
       snake.dir(-1, 0)
-
     } else {
-
       snake.dir(1, 0)
-
     }
   } else {
-    // sliding vertically
     if (diffY > 0) {
-
       snake.dir(0, -1)
-
     } else {
       snake.dir(0, 1)
-
     }
   }
-
   initialX = null;
   initialY = null;
   e.preventDefault()
@@ -234,9 +220,9 @@ setInterval(() => {
   snake.update()
   snake.show()
   snake.limit()
-  snake.scoring(score)
   snake.death()
-
+  snake.scoring(score)
+  
   food.show()
   food.limit()
 
@@ -244,5 +230,5 @@ setInterval(() => {
     score++
     loc(food)
   }
-
+  
 }, 17)
