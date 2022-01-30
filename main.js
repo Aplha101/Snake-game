@@ -64,7 +64,7 @@ class Snake {
   death() {
     for (let i = 0; i < this.tail.length; i++) {
       if (this.x == this.tail[i].x && this.y == this.tail[i].y) {
-        this.scoring()
+        this.scoring(score)
         let hc = sessionStorage.getItem('hiscore')
         alert(`GAME OVER , your score was : ${score} High score: ${hc}`)
         this.tail = []
