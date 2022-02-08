@@ -83,7 +83,7 @@ class Snake {
     this.tail[this.track - 1] = { x: this.x, y: this.y }
 
     this.x += this.xsp
-    this.y += this.ysp
+    this.y += this.ysp 
   }
   dir(x, y) {
     this.xsp = x
