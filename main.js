@@ -7,7 +7,7 @@ let R = document.getElementById('right')
 let sc = 10
 let score = 0
 let hiscore = 0
-let i = false //swipe needs fixing
+let i = true
 area.style = "background:#556479;"
 area.height = html.getBoundingClientRect().width / 2
 area.width = html.getBoundingClientRect().width / 2
@@ -38,13 +38,14 @@ function loc(npos) {
 
 
 class Snake {
-  constructor(x, y) {
+  constructor(x, y , color) {
     this.x = x
     this.y = y
     this.xsp = 1
     this.ysp = 0
     this.tail = []
     this.track = 0
+    this.color = color
   }
   eat(pos) {
     let a = dist(this.x, this.y, pos.x, pos.y)
@@ -80,7 +81,7 @@ class Snake {
     for (let i = 0; i < this.tail.length - 1; i++) {
       this.tail[i] = this.tail[i + 1]
     }
-    this.tail[this.track - 1] = { x: this.x, y: this.y }
+    this.tail[this.track - 1] = { x: this.x , y: this.y }
 
     this.x += this.xsp
     this.y += this.ysp 
@@ -90,7 +91,7 @@ class Snake {
     this.ysp = y
   }
   show() {
-    ctx.fillStyle = "#fff"
+    ctx.fillStyle = this.color
     for (let i = 0; i < this.tail.length; i++) {
       ctx.fillRect(this.tail[i].x, this.tail[i].y, 10, 10)
     }
@@ -129,7 +130,7 @@ class Food {
 }
 
 
-let snake = new Snake(area.width / 2, area.height / 2)
+let snake = new Snake(area.width / 2, area.height / 2 , "#fff")
 
 let food = new Food(Math.floor(RandomNum(area.width, 10)), Math.floor(RandomNum(area.height, 10)))
 
@@ -171,49 +172,7 @@ function controls() {
     }
   })
 }
-area.addEventListener("touchstart", startTouch, false);
-area.addEventListener("touchmove", moveTouch, false);
 
-// Swipe Up / Down / Left / Right
-var initialX = null;
-var initialY = null;
-if(i){
-function startTouch(e) {
-  initialX = e.touches[0].clientX;
-  initialY = e.touches[0].clientY;
-};
-function moveTouch(e) {
-  if (initialX === null) {
-    return;
-  }
-  if (initialY === null) {
-    return;
-  }
-
-  var currentX = e.touches[0].clientX;
-  var currentY = e.touches[0].clientY;
-
-  var diffX = initialX - currentX;
-  var diffY = initialY - currentY;
-  
-  if (Math.abs(diffX) > Math.abs(diffY) ) {
-    if (diffX > 0) {
-      snake.dir(-1, 0)
-    } else {
-      snake.dir(1, 0)
-    }
-  } else {
-    if (diffY > 0) {
-      snake.dir(0, -1)
-    } else {
-      snake.dir(0, 1)
-    }
-  }
-  initialX = null;
-  initialY = null;
-  e.preventDefault()
-};
-}
 setInterval(() => {
   Clear()
   controls()
