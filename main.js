@@ -1,9 +1,11 @@
 let area = document.getElementById('area')
 let html = document.getElementById('html')
+
 let U = document.getElementById('up')
 let D = document.getElementById('down')
 let L = document.getElementById('left')
 let R = document.getElementById('right')
+
 let sc = 10
 let score = 0
 let hiscore = 0
@@ -41,7 +43,7 @@ class Snake {
   constructor(x, y , color) {
     this.x = x
     this.y = y
-    this.xsp = 1
+    this.xsp = sc
     this.ysp = 0
     this.tail = []
     this.track = 0
@@ -49,7 +51,7 @@ class Snake {
   }
   eat(pos) {
     let a = dist(this.x, this.y, pos.x, pos.y)
-    if (a <= 10) {
+    if (a<= 10) {
       this.track++
       return true;
     } else {
@@ -124,7 +126,7 @@ class Food {
   show() {
     ctx.fillStyle = "red"
     ctx.beginPath()
-    ctx.rect(this.x, this.y, 10, 10)
+    ctx.rect(this.x, this.y, sc , 10)
     ctx.fill();
   }
 }
@@ -144,30 +146,30 @@ let Clear = () => {
 function controls() {
   //mobiles
   U.addEventListener("click", () => {
-    snake.dir(0, -1)
+    snake.dir(0, -1 * sc)
   })
   D.addEventListener("click", () => {
-    snake.dir(0, 1)
+    snake.dir(0, sc)
   })
   L.addEventListener("click", () => {
-    snake.dir(-1, 0)
+    snake.dir(-1 * sc, 0)
   })
   R.addEventListener("click", () => {
-    snake.dir(1, 0)
+    snake.dir(sc, 0)
   })
   //keyboard controls 
   window.addEventListener('keydown', (evt) => {
     if (evt.keyCode == 38 || evt.keyCode == 87) {
-      snake.dir(0, -1)
+      snake.dir(0, -1 * sc)
       evt.preventDefault()
     } else if (evt.keyCode == 40 || evt.keyCode == 83) {
-      snake.dir(0, 1)
+      snake.dir(0, sc)
       evt.preventDefault()
     } else if (evt.keyCode == 37 || evt.keyCode == 65) {
-      snake.dir(-1, 0)
+      snake.dir(-1 * sc, 0)
       evt.preventDefault()
     } else if (evt.keyCode == 39 || evt.keyCode == 68) {
-      snake.dir(1, 0)
+      snake.dir(sc, 0)
       evt.preventDefault()
     }
   })
@@ -191,4 +193,4 @@ setInterval(() => {
     loc(food)
   }
   
-}, 17)
+}, 1000/15)
