@@ -39,7 +39,7 @@ function loc(npos) {
 }
 
 
-class Snake {
+ class Snake {
   constructor(x, y , color) {
     this.x = x
     this.y = y
