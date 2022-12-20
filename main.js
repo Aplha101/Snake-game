@@ -9,7 +9,7 @@ let R = document.getElementById('right')
 let sc = 10
 let score = 0
 let hiscore = 0
-let i = true
+
 area.style = "background:#556479;"
 area.height = html.getBoundingClientRect().width / 2
 area.width = html.getBoundingClientRect().width / 2
@@ -28,10 +28,10 @@ let RandomNum = (max, min) => {
 function dist(x, y, posx, posy) {
   return Math.sqrt(Math.pow(x - posx, 2) + Math.pow(y - posy, 2))
 }
-
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max)
 }
+
 
 function loc(npos) {
   npos.x = Math.floor(RandomNum(area.width, 10))
