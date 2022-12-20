@@ -191,6 +191,7 @@ setInterval(() => {
   if (snake.eat(food)) {
     score++
     loc(food)
+    console.log(distance(food.x , food.y , snake.x , snake.y))
   }
   
 }, 150 )
