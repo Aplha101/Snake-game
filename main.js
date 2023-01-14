@@ -8,7 +8,7 @@ let R = document.getElementById('right')
 
 let sc = 10
 let score = 0
-let hiscore = 0
+
 
 area.style = "background:#556479;"
 area.height = html.getBoundingClientRect().width / 2
@@ -20,9 +20,13 @@ if (window.innerHeight < window.innerWidth) {
 }
 let ctx = area.getContext('2d')
 
-
 let RandomNum = (max, min) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function generateRandom(Array) {
+  let random = Math.floor(Math.random() * Array.length)
+  return Array[random]
 }
 
 function dist(x, y, posx, posy) {
@@ -46,7 +50,7 @@ function loc(npos) {
     this.xsp = sc
     this.ysp = 0
     this.tail = []
-    this.track = 0
+    this.track = 3
     this.color = color
   }
   eat(pos) {
@@ -59,10 +63,7 @@ function loc(npos) {
     }
   }
   scoring(score) {
-    if (score > hiscore) {
-      hiscore = score
-      sessionStorage.setItem('hiscore', hiscore)
-    }
+    
   }
   death() {
     for (let i = 0; i < this.tail.length; i++) {
@@ -71,7 +72,7 @@ function loc(npos) {
         let hc = sessionStorage.getItem('hiscore')
         alert(`GAME OVER , your score was : ${score} High score: ${hc}`)
         this.tail = []
-        this.track = 0
+        this.track = 3
         score = 0
         this.x = area.width / 2
         this.y = area.height / 2
@@ -106,9 +107,9 @@ function loc(npos) {
       this.x = 0;
     } else if (this.y > area.height) {
       this.y = 0;
-    } else if (this.x < 1) {
+    } else if (this.x <= 0) {
       this.x = area.width;
-    } else if (this.y < 1) {
+    } else if (this.y <= 0 ) {
       this.y = area.height;
     }
   }
@@ -132,7 +133,10 @@ class Food {
 }
 
 
-let snake = new Snake(area.width / 2, area.height / 2 , "#fff")
+    let colors = ["#3C77B8" , "#224467" , "#8D1021" , "7EA36F" , "9F8DC6","#FC0118" , "#FCF101", "#96FD01" , "#00FE26" , "#01FEE8" , "#02ADFE" , "#OCO1FA", "#CCO1FA", "#FB02A4"]
+    let x = generateRandom(colors)
+    
+let snake = new Snake(area.width / 2, area.height / 2 , x)
 
 let food = new Food(Math.floor(RandomNum(area.width, 10)), Math.floor(RandomNum(area.height, 10)))
 
@@ -191,7 +195,6 @@ setInterval(() => {
   if (snake.eat(food)) {
     score++
     loc(food)
-    console.log(distance(food.x , food.y , snake.x , snake.y))
   }
   
 }, 150 )
